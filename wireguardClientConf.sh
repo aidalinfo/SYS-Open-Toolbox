@@ -42,3 +42,4 @@ else
   echo "AllowedIPs = $server_lan_ip" >> $site_name.conf
   echo "Endpoint = $server_ip:$server_port" >> $site_name.conf
   
+fi
