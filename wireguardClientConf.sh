@@ -28,18 +28,25 @@ read -p "Enter the server public key: " server_public_key
 read -p "Enter the server port [default : 51820]: " server_port
 read -p "Enter the client IP: " client_ip
 
-cd /etc/wireguard
 
-if [ -f $site_name.conf ]; then
-    echo "$site_name.conf already exists."
+if [ -f /etc/wireguard/$site_name.conf ]; then
+    echo "/etc/wireguard/$site_name.conf already exists."
 else
-  echo "$site_name.conf does not exist."
-  echo "[Interface]" > $site_name.conf
-  echo "PrivateKey = $(cat wg-private.key)" >> $site_name.conf
-  echo "Address = $client_ip" >> $site_name.conf
-  echo "[Peer]" >> $site_name.conf
-  echo "PublicKey = $server_public_key" >> $site_name.conf
-  echo "AllowedIPs = $server_lan_ip" >> $site_name.conf
-  echo "Endpoint = $server_ip:$server_port" >> $site_name.conf
+
+  echo "Use The following public key for the server config file:"
+  echo "$(< wg-public.key)"
+  pause
+
+  echo "/etc/wireguard/$site_name.conf does not exist."
+  echo "[Interface]" > /etc/wireguard/$site_name.conf
+  echo "PrivateKey = $(cat wg-private.key)" >> /etc/wireguard/$site_name.conf
+  echo "Address = $client_ip" >> /etc/wireguard/$site_name.conf
+  echo "[Peer]" >> /etc/wireguard/$site_name.conf
+  echo "PublicKey = $server_public_key" >> /etc/wireguard/$site_name.conf
+  echo "AllowedIPs = $server_lan_ip" >> /etc/wireguard/$site_name.conf
+  echo "Endpoint = $server_ip:$server_port" >> /etc/wireguard/$site_name.conf
   
+  echo "Your client config file is ready in /etc/wireguard/$site_name.conf"
+  
+
 fi
