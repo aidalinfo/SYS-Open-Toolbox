@@ -33,8 +33,8 @@ if [ -f /etc/wireguard/$site_name.conf ]; then
     echo "/etc/wireguard/$site_name.conf already exists."
 else
 
-  echo "Use The following public key for the server config file:"
-  echo "$(< wg-public.key)"
+  echo "Use The following public key to configure the client on firewall:"
+  cat ./wg-public.key
   pause
 
   echo "/etc/wireguard/$site_name.conf does not exist."
