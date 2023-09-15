@@ -47,6 +47,12 @@ else
   echo "Endpoint = $server_ip:$server_port" >> /etc/wireguard/$site_name.conf
   
   echo "Your client config file is ready in /etc/wireguard/$site_name.conf"
+  echo "To enable the client, run the following command:"
+  echo "sudo wg-quick up $site_name"
+  echo "To disable the client, run the following command:"
+  echo "sudo wg-quick down $site_name"
+  echo "To check the status of the client, run the following command:"
+  echo "sudo wg show"
   
 
 fi
